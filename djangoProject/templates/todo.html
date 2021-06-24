@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>My ToDo App!</h1>
+    <!-- <ul>
+        <li>Temporary List Item 1</li>
+        <li>Temporary List Item 2</li>
+    </ul> -->
+    <ul>
+        {% for todo_item in allItems %}
+        <p>
+            <li>{{ todo_item.content }}
+                <form action="/delTodoItem/{{todo_item.id}}/"
+                      style="display: inline;"
+                      method="post">{% csrf_token %}
+                    
+                    <input type="submit" value="Delete Todo" />
+                </form>
+            </li>
+        </p>
+        {% endfor %}
+    </ul>
+    <form action="/addTodoItem/" method="post">{% csrf_token %}
+        <input type="text" name="content" />
+        <input type="submit" value="Add Todo" />
+    </form>
+</body>
+</html>

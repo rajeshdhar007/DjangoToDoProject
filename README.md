@@ -111,7 +111,7 @@ Quit the server with CONTROL-C.
 
 Ref: https://www.digitalocean.com/community/tutorials/how-to-install-the-django-web-framework-on-ubuntu-20-04
 
-### To configure the application to be monitored
+# To configure the application to be monitored
 1. Create a Project in Sentry
 ![image](https://user-images.githubusercontent.com/77116268/126216859-27be20bf-e9b1-4f4f-b17f-eaff931b283e.png)
 

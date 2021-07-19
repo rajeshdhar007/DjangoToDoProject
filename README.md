@@ -158,8 +158,10 @@ $ python manage.py runserver 0:8000
 ```
 
 6. From the browser, hit ```http://localhost:8000/sentry-debug```
+
 ![image](https://user-images.githubusercontent.com/77116268/126216904-48ed3405-9fdb-4eb8-aef5-f90b8bc0ca97.png)
 
 7. In Sentry:
+
 ![image](https://user-images.githubusercontent.com/77116268/126217011-8f332218-e45c-4ebf-9e0e-b35157fae680.png)
 

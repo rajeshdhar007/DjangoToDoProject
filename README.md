@@ -112,12 +112,15 @@ Quit the server with CONTROL-C.
 Ref: https://www.digitalocean.com/community/tutorials/how-to-install-the-django-web-framework-on-ubuntu-20-04
 
 ### To configure the application to be monitored
-1. Create a DSN in Sentry
+1. Create a Project in Sentry
+![image](https://user-images.githubusercontent.com/77116268/126216859-27be20bf-e9b1-4f4f-b17f-eaff931b283e.png)
+
+
 2. There will be instructions on the page to setup the application:
 ```
 pip install --upgrade sentry-sdk
 ```
-2. Update ```/DjangoToDoProject/djangoProject/todoProject/settings.py``` as include:
+3. Update ```/DjangoToDoProject/djangoProject/todoProject/settings.py``` as include:
 ```
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
@@ -137,7 +140,7 @@ sentry_sdk.init(
 )
 ```
 
-3. Configure a view so that we can trigger the sentry debug. Update ```/DjangoToDoProject/djangoProject/todoProject/urls.py```
+4. Configure a view so that we can trigger the sentry debug. Update ```/DjangoToDoProject/djangoProject/todoProject/urls.py```
 
 ```
 def trigger_error(request):
@@ -149,10 +152,14 @@ urlpatterns = [
     path('sentry-debug/', trigger_error),
 ]
 ```
-4. Run the app as you would normally do.
+5. Run the app as you would normally do.
 ```
 $ python manage.py runserver 0:8000
 ```
 
-5. From the browser, hit ```http://localhost:8000/sentry-debug```
+6. From the browser, hit ```http://localhost:8000/sentry-debug```
+![image](https://user-images.githubusercontent.com/77116268/126216904-48ed3405-9fdb-4eb8-aef5-f90b8bc0ca97.png)
+
+7. In Sentry:
+![image](https://user-images.githubusercontent.com/77116268/126217011-8f332218-e45c-4ebf-9e0e-b35157fae680.png)
 

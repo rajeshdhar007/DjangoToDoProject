@@ -1,0 +1,335 @@
+▶ Parsing command line ...
+
+▶ Setting up error handling ...
+
+▶ Checking minimum requirements ...
+
+▶ Creating volumes for persistent storage ...
+Created sentry-clickhouse.
+Created sentry-data.
+Created sentry-kafka.
+Created sentry-postgres.
+Created sentry-redis.
+Created sentry-symbolicator.
+Created sentry-zookeeper.
+
+▶ Ensuring files from examples ...
+Creating ../sentry/sentry.conf.py...
+Creating ../sentry/config.yml...
+Creating ../symbolicator/config.yml...
+Creating ../sentry/requirements.txt...
+
+▶ Generating secret key ...
+Secret key written to ../sentry/config.yml
+
+▶ Replacing TSDB ...
+
+▶ Fetching and updating Docker images ...
+21.7.0: Pulling from getsentry/sentry
+Digest: sha256:26c0f010251dda21dfd9edb3e05a1090635551bdd1bbadb2353d516b4248d36c
+Status: Image is up to date for getsentry/sentry:21.7.0
+docker.io/getsentry/sentry:21.7.0
+
+▶ Building and tagging Docker images ...
+
+smtp uses an image, skipping
+memcached uses an image, skipping
+redis uses an image, skipping
+postgres uses an image, skipping
+zookeeper uses an image, skipping
+kafka uses an image, skipping
+clickhouse uses an image, skipping
+geoipupdate uses an image, skipping
+snuba-api uses an image, skipping
+snuba-consumer uses an image, skipping
+snuba-outcomes-consumer uses an image, skipping
+snuba-sessions-consumer uses an image, skipping
+snuba-transactions-consumer uses an image, skipping
+snuba-replacer uses an image, skipping
+snuba-subscription-consumer-events uses an image, skipping
+snuba-subscription-consumer-transactions uses an image, skipping
+symbolicator uses an image, skipping
+web uses an image, skipping
+cron uses an image, skipping
+worker uses an image, skipping
+ingest-consumer uses an image, skipping
+post-process-forwarder uses an image, skipping
+subscription-consumer-events uses an image, skipping
+subscription-consumer-transactions uses an image, skipping
+relay uses an image, skipping
+nginx uses an image, skipping
+Building snuba-cleanup
+Step 1/5 : ARG BASE_IMAGE
+Step 2/5 : FROM ${BASE_IMAGE}
+ ---> 8e69c6a1465b
+Step 3/5 : RUN apt-get update && apt-get install -y --no-install-recommends cron &&     rm -r /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 4bd262089d9e
+Step 4/5 : COPY entrypoint.sh /entrypoint.sh
+ ---> Using cache
+ ---> 1cbbafe43977
+Step 5/5 : ENTRYPOINT ["/entrypoint.sh"]
+ ---> Using cache
+ ---> b5652dac632a
+
+Successfully built b5652dac632a
+Successfully tagged snuba-cleanup-onpremise-local:latest
+Building snuba-transactions-cleanup
+Step 1/5 : ARG BASE_IMAGE
+Step 2/5 : FROM ${BASE_IMAGE}
+ ---> 8e69c6a1465b
+Step 3/5 : RUN apt-get update && apt-get install -y --no-install-recommends cron &&     rm -r /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 4bd262089d9e
+Step 4/5 : COPY entrypoint.sh /entrypoint.sh
+ ---> Using cache
+ ---> 1cbbafe43977
+Step 5/5 : ENTRYPOINT ["/entrypoint.sh"]
+ ---> Using cache
+ ---> b5652dac632a
+
+Successfully built b5652dac632a
+Successfully tagged snuba-cleanup-onpremise-local:latest
+Building symbolicator-cleanup
+Step 1/5 : ARG BASE_IMAGE
+Step 2/5 : FROM ${BASE_IMAGE}
+ ---> 64ccdf50243f
+Step 3/5 : RUN apt-get update && apt-get install -y --no-install-recommends cron &&     rm -r /var/lib/apt/lists/*
+ ---> Using cache
+ ---> dddb7809030c
+Step 4/5 : COPY entrypoint.sh /entrypoint.sh
+ ---> Using cache
+ ---> bf25e999c345
+Step 5/5 : ENTRYPOINT ["/entrypoint.sh"]
+ ---> Using cache
+ ---> 5b93a1a16bd8
+
+Successfully built 5b93a1a16bd8
+Successfully tagged symbolicator-cleanup-onpremise-local:latest
+Building sentry-cleanup
+Step 1/5 : ARG BASE_IMAGE
+Step 2/5 : FROM ${BASE_IMAGE}
+ ---> a6d188691403
+Step 3/5 : RUN apt-get update && apt-get install -y --no-install-recommends cron &&     rm -r /var/lib/apt/lists/*
+ ---> Using cache
+ ---> fe8d160b08b7
+Step 4/5 : COPY entrypoint.sh /entrypoint.sh
+ ---> Using cache
+ ---> 6d8c9c044343
+Step 5/5 : ENTRYPOINT ["/entrypoint.sh"]
+ ---> Using cache
+ ---> 461d8daf0365
+
+Successfully built 461d8daf0365
+Successfully tagged sentry-cleanup-onpremise-local:latest
+
+Docker images built.
+
+▶ Turning things off ...
+Removing network onpremise_default
+Network onpremise_default not found.
+Removing network sentry_onpremise_default
+Network sentry_onpremise_default not found.
+
+▶ Setting up Zookeeper ...
+Creating network "sentry_onpremise_default" with the default driver
+Creating volume "sentry_onpremise_sentry-secrets" with default driver
+Creating volume "sentry_onpremise_sentry-smtp" with default driver
+Creating volume "sentry_onpremise_sentry-zookeeper-log" with default driver
+Creating volume "sentry_onpremise_sentry-kafka-log" with default driver
+Creating volume "sentry_onpremise_sentry-smtp-log" with default driver
+Creating volume "sentry_onpremise_sentry-clickhouse-log" with default driver
+
+▶ Downloading and installing wal2json ...
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  5416  100  5416    0     0  26366      0 --:--:-- --:--:-- --:--:-- 26291
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   638  100   638    0     0   2803      0 --:--:-- --:--:-- --:--:--  2798
+100  101k  100  101k    0     0   263k      0 --:--:-- --:--:-- --:--:--  263k
+
+▶ Bootstrapping and migrating Snuba ...
+Creating sentry_onpremise_clickhouse_1 ... 
+Creating sentry_onpremise_redis_1      ... 
+Creating sentry_onpremise_zookeeper_1  ... 
+Creating sentry_onpremise_clickhouse_1 ... done
+Creating sentry_onpremise_redis_1      ... done
+Creating sentry_onpremise_zookeeper_1  ... done
+Creating sentry_onpremise_kafka_1      ... 
+Creating sentry_onpremise_kafka_1      ... done
+2021-07-19 19:02:39,577 Attempting to connect to Kafka (attempt 0)...
+2021-07-19 19:02:41,582 Attempting to connect to Kafka (attempt 1)...
+2021-07-19 19:02:43,588 Attempting to connect to Kafka (attempt 2)...
+2021-07-19 19:02:43,599 Connected to Kafka on attempt 2
+2021-07-19 19:02:43,599 Creating Kafka topics...
+2021-07-19 19:02:44,073 Topic events created
+2021-07-19 19:02:44,073 Topic event-replacements created
+2021-07-19 19:02:44,073 Topic event-replacements-legacy created
+2021-07-19 19:02:44,073 Topic snuba-commit-log created
+2021-07-19 19:02:44,073 Topic cdc created
+2021-07-19 19:02:44,073 Topic ingest-metrics created
+2021-07-19 19:02:44,073 Topic outcomes created
+2021-07-19 19:02:44,074 Topic ingest-sessions created
+2021-07-19 19:02:44,074 Topic events-subscription-results created
+2021-07-19 19:02:44,075 Topic transactions-subscription-results created
+2021-07-19 19:02:44,075 Topic snuba-queries created
+Starting sentry_onpremise_zookeeper_1 ... 
+Starting sentry_onpremise_redis_1     ... 
+Starting sentry_onpremise_clickhouse_1 ... 
+Starting sentry_onpremise_zookeeper_1  ... done
+Starting sentry_onpremise_clickhouse_1 ... done
+Starting sentry_onpremise_redis_1      ... done
+Starting sentry_onpremise_kafka_1      ... 
+Starting sentry_onpremise_kafka_1      ... done
+Starting migration from 2021-07-19
+Migrated 2021-07-19. (1 of 13 partitions done)
+Migrated 2021-07-12. (2 of 13 partitions done)
+Migrated 2021-07-05. (3 of 13 partitions done)
+Migrated 2021-06-28. (4 of 13 partitions done)
+Migrated 2021-06-21. (5 of 13 partitions done)
+Migrated 2021-06-14. (6 of 13 partitions done)
+Migrated 2021-06-07. (7 of 13 partitions done)
+Migrated 2021-05-31. (8 of 13 partitions done)
+Migrated 2021-05-24. (9 of 13 partitions done)
+Migrated 2021-05-17. (10 of 13 partitions done)
+Migrated 2021-05-10. (11 of 13 partitions done)
+Migrated 2021-05-03. (12 of 13 partitions done)
+Migrated 2021-04-26. (13 of 13 partitions done)
+Done. Optimizing.
+Finished running migrations
+
+▶ Creating additional Kafka topics ...
+Starting sentry_onpremise_zookeeper_1 ... 
+Starting sentry_onpremise_zookeeper_1 ... done
+Created topic ingest-attachments.
+
+Starting sentry_onpremise_zookeeper_1 ... 
+Starting sentry_onpremise_zookeeper_1 ... done
+Created topic ingest-transactions.
+
+Starting sentry_onpremise_zookeeper_1 ... 
+Starting sentry_onpremise_zookeeper_1 ... done
+Created topic ingest-events.
+
+
+▶ Ensuring proper PostgreSQL version ...
+
+▶ Setting up / migrating database ...
+Starting sentry_onpremise_clickhouse_1 ... 
+Creating sentry_onpremise_symbolicator_1 ... 
+Starting sentry_onpremise_clickhouse_1   ... done
+Starting sentry_onpremise_zookeeper_1    ... 
+Starting sentry_onpremise_zookeeper_1    ... done
+Creating sentry_onpremise_memcached_1    ... 
+Starting sentry_onpremise_redis_1        ... 
+Creating sentry_onpremise_smtp_1         ... 
+Starting sentry_onpremise_redis_1        ... done
+Creating sentry_onpremise_postgres_1     ... 
+Starting sentry_onpremise_kafka_1        ... 
+Starting sentry_onpremise_kafka_1        ... done
+Creating sentry_onpremise_snuba-replacer_1 ... 
+Creating sentry_onpremise_snuba-subscription-consumer-events_1 ... 
+Creating sentry_onpremise_snuba-consumer_1                     ... 
+Creating sentry_onpremise_snuba-subscription-consumer-transactions_1 ... 
+Creating sentry_onpremise_snuba-transactions-consumer_1              ... 
+Creating sentry_onpremise_snuba-sessions-consumer_1                  ... 
+Creating sentry_onpremise_snuba-outcomes-consumer_1                  ... 
+Creating sentry_onpremise_snuba-api_1                                ... 
+Creating sentry_onpremise_memcached_1                                ... done
+Creating sentry_onpremise_smtp_1                                     ... done
+Creating sentry_onpremise_symbolicator_1                             ... done
+Creating sentry_onpremise_postgres_1                                 ... done
+Creating sentry_onpremise_snuba-consumer_1                           ... done
+Creating sentry_onpremise_snuba-replacer_1                           ... done
+Creating sentry_onpremise_snuba-api_1                                ... done
+Creating sentry_onpremise_snuba-sessions-consumer_1                  ... done
+Creating sentry_onpremise_snuba-subscription-consumer-transactions_1 ... done
+Creating sentry_onpremise_snuba-outcomes-consumer_1                  ... done
+Creating sentry_onpremise_snuba-subscription-consumer-events_1       ... done
+Creating sentry_onpremise_snuba-transactions-consumer_1              ... done
+Installing additional dependencies...
+[33mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv[0m
+
+19:03:14 [WARNING] sentry.utils.geo: Error opening GeoIP database: /geoip/GeoLite2-City.mmdb
+19:03:14 [WARNING] sentry.utils.geo: Error opening GeoIP database in Rust: /geoip/GeoLite2-City.mmdb
+19:03:17 [INFO] sentry.plugins.github: apps-not-configured
+Running migrations for default
+[36;1mOperations to perform:[0m
+[1m  Apply all migrations: [0madmin, auth, contenttypes, jira_ac, nodestore, sentry, sessions, sites, social_auth
+[36;1mRunning migrations:[0m
+  Applying sentry.0001_squashed_0200_release_indices...[32;1m OK[0m
+  Applying contenttypes.0001_initial...[32;1m OK[0m
+  Applying admin.0001_initial...[32;1m OK[0m
+  Applying admin.0002_logentry_remove_auto_add...[32;1m OK[0m
+  Applying contenttypes.0002_remove_content_type_name...[32;1m OK[0m
+  Applying auth.0001_initial...[32;1m OK[0m
+  Applying auth.0002_alter_permission_name_max_length...[32;1m OK[0m
+  Applying auth.0003_alter_user_email_max_length...[32;1m OK[0m
+  Applying auth.0004_alter_user_username_opts...[32;1m OK[0m
+  Applying auth.0005_alter_user_last_login_null...[32;1m OK[0m
+  Applying auth.0006_require_contenttypes_0002...[32;1m OK[0m
+  Applying auth.0007_alter_validators_add_error_messages...[32;1m OK[0m
+  Applying auth.0008_alter_user_username_max_length...[32;1m OK[0m
+  Applying jira_ac.0001_initial...[32;1m OK[0m
+  Applying nodestore.0001_initial...[32;1m OK[0m
+  Applying nodestore.0002_nodestore_no_dictfield...[32;1m OK[0m
+  Applying sentry.0201_semver_package...[32;1m OK[0m
+  Applying sentry.0202_org_slug_upper_idx...[32;1m OK[0m
+  Applying sentry.0203_groupedmessage_status_index...[32;1m OK[0m
+  Applying sentry.0204_use_project_team_for_team_key_transactions...[32;1m OK[0m
+  Applying sentry.0205_semver_backfill...[32;1m OK[0m
+  Applying sentry.0206_organization_require_email_verification_flag...[32;1m OK[0m
+  Applying sentry.0207_release_adoption...[32;1m OK[0m
+  Applying sentry.0208_add_team_scope...[32;1m OK[0m
+  Applying sentry.0209_avatar_remove_file_fk...[32;1m OK[0m
+  Applying sentry.0210_backfill_project_transaction_thresholds...[32;1m OK[0m
+  Applying sentry.0211_add_artifact_count...[32;1m OK[0m
+  Applying sentry.0212_appconnectbuilds...[32;1m OK[0m
+  Applying sentry.0213_rule_project_status_owner_index...[32;1m OK[0m
+  Applying sentry.0214_activity_project_type_datetime_idx...[32;1m OK[0m
+  Applying sentry.0215_fix_state...[32;1m OK[0m
+  Applying sentry.0216_cdc_setup_replication_index...[32;1m OK[0m
+  Applying sentry.0217_debugfile_remove_project_fk...[32;1m OK[0m
+  Applying sentry.0218_releasefile_remove_fks...[32;1m OK[0m
+  Applying sentry.0219_exporteddatablob_remove_blob_fk...[32;1m OK[0m
+  Applying sentry.0220_add_current_release_version_group_resolution...[32;1m OK[0m
+  Applying sentry.0221_add_appconnect_upload_dates...[32;1m OK[0m
+  Applying sessions.0001_initial...[32;1m OK[0m
+  Applying sites.0001_initial...[32;1m OK[0m
+  Applying sites.0002_alter_domain_unique...[32;1m OK[0m
+  Applying social_auth.0001_initial...[32;1m OK[0m
+19:03:50 [WARNING] sentry: Cannot initiate onboarding for organization (1) due to missing owners
+Created internal Sentry project (slug=internal, id=1)
+
+Would you like to create a user account now? [Y/n]: y
+Email: rdhar@opentext.com
+Password: 
+Repeat for confirmation: 
+Added to organization: sentry
+User created: rdhar@opentext.com
+Creating missing DSNs
+Correcting Group.num_comments counter
+
+▶ Migrating file storage ...
+
+▶ Generating Relay credentials ...
+Creating ../relay/config.yml...
+Relay credentials written to ../relay/credentials.json
+
+▶ Setting up GeoIP integration ...
+Setting up IP address geolocation ...
+Installing (empty) IP address geolocation database ... done.
+IP address geolocation is not configured for updates.
+See https://develop.sentry.dev/self-hosted/geolocation/ for instructions.
+Error setting up IP address geolocation.
+
+
+-----------------------------------------------------------------
+
+You're all done! Run the following command to get Sentry running:
+
+  docker-compose up -d
+
+-----------------------------------------------------------------
+

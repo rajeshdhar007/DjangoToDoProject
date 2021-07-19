@@ -1,5 +1,10 @@
 # DjangoToDoProject
 
+This project is setup to be monitored using Sentry (https://github.com/getsentry/onpremise) - Sentry.io
+Sentry Version - 21.7.0
+Follow the documentation here: https://develop.sentry.dev/self-hosted/
+
+
 ## Steps For Setup on Ubuntu 20.04
 ### Pre-requisites
 ```
@@ -105,3 +110,49 @@ Quit the server with CONTROL-C.
 
 
 Ref: https://www.digitalocean.com/community/tutorials/how-to-install-the-django-web-framework-on-ubuntu-20-04
+
+### To configure the application to be monitored
+1. Create a DSN in Sentry
+2. There will be instructions on the page to setup the application:
+```
+pip install --upgrade sentry-sdk
+```
+2. Update ```/DjangoToDoProject/djangoProject/todoProject/settings.py``` as include:
+```
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+
+sentry_sdk.init(
+    dsn="http://2e5d022cd7c6484cb1c33f59d7d4b8c1@127.0.0.1:9000/2",
+    integrations=[DjangoIntegration()],
+
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for performance monitoring.
+    # We recommend adjusting this value in production.
+    traces_sample_rate=1.0,
+
+    # If you wish to associate users to errors (assuming you are using
+    # django.contrib.auth) you may enable sending PII data.
+    send_default_pii=True
+)
+```
+
+3. Configure a view so that we can trigger the sentry debug. Update ```/DjangoToDoProject/djangoProject/todoProject/urls.py```
+
+```
+def trigger_error(request):
+    division_by_zero = 1 / 0
+
+urlpatterns = [
+    ...
+    ...
+    path('sentry-debug/', trigger_error),
+]
+```
+4. Run the app as you would normally do.
+```
+$ python manage.py runserver 0:8000
+```
+
+5. From the browser, hit ```http://localhost:8000/sentry-debug```
+

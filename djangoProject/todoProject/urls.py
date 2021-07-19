@@ -18,10 +18,16 @@ from django.urls import path
 from hello.views import helloView
 from todoApp.views import todoView, addTodoItem, delTodoItem
 
+def trigger_error(request):
+    division_by_zero = 1 / 0
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('hello/', helloView),
     path('todo/', todoView),
     path('addTodoItem/', addTodoItem),
     path('delTodoItem/<int:todo_id>/', delTodoItem),
+    path('sentry-debug/', trigger_error),
 ]
+
+
